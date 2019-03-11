@@ -25,8 +25,8 @@
 	</div>
 	
 	<div class="field-container">
-	    <label for="address">Pledge per Lap (min $0.50)</label>
-	    <input id="address" type="text">
+	    <label for="pledgeAmount">Pledge per Lap (min $0.50)</label>
+	    <input id="pledgeAmount" type="text" inputmode="numeric">
 	</div>
 	<div class="field-container">
 	     <h2>Or</h2>
@@ -38,6 +38,7 @@
 	<div class="payment-title">
 	     <h1>Personal Information</h1>
 	 </div>
+	 
 	<div class="field-container">
 	    <label for="address">Address</label>
 	    <input id="address" type="text">
@@ -227,14 +228,22 @@
             <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
         </div>
 		
-		<a href="#" class="btn btn-primary">Make Pledge</a>
+		
 		
     </div>
 	
+	<div class="payment-title">
+	     <a href="#" class="btn btn-primary" id="pledgeBtn">Make Pledge</a>
+	 </div>
 	
 	
-
+	<!-- Firebase Init-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js'></script>
+	<script src="https://demo.convergepay.com/hosted-payments/Checkout.js"></script>
 	<script src="js/pledge.js"></script>
 
 

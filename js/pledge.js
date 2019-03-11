@@ -1,5 +1,24 @@
 window.onload = function () {
 
+
+const baseUrl = "https://us-central1-funrun-dd997.cloudfunctions.net/";
+
+firebase.initializeApp({
+            apiKey: "AIzaSyAGIN8ephB61ongcfgq5Ph715zDRsJ3UEI",
+            authDomain: "funrun-dd997.firebaseapp.com",
+            databaseURL: "https://funrun-dd997.firebaseio.com/",
+            projectId: "funrun-dd997",
+            storageBucket: "gs://funrun-dd997.appspot.com"
+        });
+
+        // Immutable vars
+var db = firebase.firestore();
+// Disable deprecated features
+db.settings({
+  timestampsInSnapshots: true
+});
+
+
 const name = document.getElementById('name');
 const cardnumber = document.getElementById('cardnumber');
 const expirationdate = document.getElementById('expirationdate');
@@ -199,14 +218,14 @@ cardnumber_mask.on("accept", function () {
 //Generate random card number from list of known test numbers
 const randomCard = function () {
     let testCards = [
-        '4000056655665556',
-        '5200828282828210',
-        '371449635398431',
-        '6011000990139424',
-        '30569309025904',
-        '3566002020360505',
-        '6200000000000005',
-        '6759649826438453',
+        '4124939999999990',
+        '5406004444444443',
+        '5418790008991235',
+        '6011013333333331',
+        '370000888888882',
+        '370000999999990',
+        '6011990000000006',
+        '6011996666666667',
     ];
     let randomNumber = Math.floor(Math.random() * testCards.length);
     cardnumber_mask.unmaskedValue = testCards[randomNumber];
@@ -277,4 +296,67 @@ expirationdate.addEventListener('focus', function () {
 securitycode.addEventListener('focus', function () {
     document.querySelector('.creditcard').classList.add('flipped');
 });
+
+
+var voucherCode = "jhgkjhg87678";
+
+document.getElementById("pledgeBtn").onclick = function () {
+	 
+	 //TODO - Implement Loading Spinner
+	 
+	 //TODO - Verify fields are completed
+	 
+	 //TODO - Verify voucherCode against voucherCodes Array;
+	 
+	 // Submit Payment Info
+	 
+//	 var x = document.getElementById("schoolSelection").selectedIndex;
+//	 var school = document.getElementsByTagName("option")[x].value;
+	// var school = JSON.parse(json);
+	 var expirationDate = document.getElementById("expirationdate").value;
+	 var array = expirationDate.split("/");
+	 var month = array[0];
+	 var year = "20" + array[1];
+	 
+	 var donor = {
+	 			name :  document.getElementById("name").value,
+	 		//	email : document.getElementById("email").value,
+	 			address : document.getElementById("address").value,
+	 		//	city : document.getElementById("city").value,
+	 			state : "UT", // document.getElementById("state").options[document.getElementById("state").selectedIndex].value,
+	 		//	schoolName : document.getElementById("schoolSelection").options[document.getElementById("schoolSelection").selectedIndex].value,
+	 			cardNumber : document.getElementById("cardnumber").value, // "4124939999999990"
+	 			cvc : document.getElementById("securitycode").value,
+	 			expirationMonth : month,
+	 			expirationYear : year,
+	 			pledgePerLap : document.getElementById("pledgeAmount").value,
+	 			studentId : voucherCode,
+	 		//	school : school,
+	 		//	schoolId : school.schoolId
+		}
+		 
+	axios.post('https://us-central1-funrun-dd997.cloudfunctions.net/verifyCard', donor)
+	            .then(function (res) {
+	              console.log('log result - ' + res.data());
+				  //TODO - Change Donor to returned Donor
+				  db.collection('donors').add(donor).then(ref => {
+				  		
+				  		
+				  		
+				  	});
+	            })
+	            .catch(function (err) {
+	               console.log(err);
+	            });
+				
+	
+		
+			
+	 	 
+	 
+	 
+}
+
+
+
 };
