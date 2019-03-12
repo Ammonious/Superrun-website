@@ -1,36 +1,62 @@
-
 /*! Payment Page */
 body {
     margin: 0;
     padding: 0;
     background-color: #393939;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-line-pack: center;
-        align-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    min-height: 100vh;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
     font-family: 'Raleway';
 }
 
-.select-style { width: 10%; overflow: hidden; background: url("../images/select-arrow.png") no-repeat 97% 50%; border: 1px solid #d1d1d1; margin: 24px; }
-.select-style select { width: 100%; border: none; box-shadow: none; background-color: white; background-image: none; -webkit-appearance: none; -moz-appearance: none; appearance: none;  cursor: pointer; }
-.select-style select:focus { outline: none; border: none; box-shadow: none }
+.select-style {
+    width: 100%;
+    overflow: hidden;
+    background: url("../images/select-arrow.png") no-repeat 97% 50%;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    margin: 24px 0;
+}
 
-.extra-big-input, .extra-big-textarea, .extra-big-select select { padding: 18px 25px; font-size: 14px; line-height: 24px; height: 54px;}
-.big-input, .big-textarea, .big-select select { padding: 18px 25px; font-size: 14px; border-radius: 0;}
+.select-style select {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background-color: white;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.select-style select:focus {
+    outline: none;
+    border: none;
+    box-shadow: none
+}
+
+.extra-big-input,
+.extra-big-textarea,
+.extra-big-select select {
+    padding: 18px 25px;
+    font-size: 14px;
+    line-height: 24px;
+    height: 54px;
+}
+
+.big-input,
+.big-textarea,
+.big-select select {
+    padding: 18px 25px;
+    font-size: 14px;
+    border-radius: 0;
+}
 
 .payment-title {
     width: 100%;
     text-align: center;
+}
+
+.payment-title h1 {
+    color: #fff
 }
 
 .form-container .field-container:first-of-type {
@@ -71,7 +97,8 @@ body {
 
 label {
     padding-bottom: 5px;
-    font-size: 13px;
+    font-size: 11pt;
+    color: #fff;
 }
 
 input {
@@ -87,7 +114,7 @@ input {
     height: 38px;
     position: absolute;
     right: 6px;
-    top: calc(50% - 17px);
+    top: calc(50% - 9px);
     width: 60px;
 }
 
@@ -99,12 +126,46 @@ input {
     -o-transition: none !important;
 }
 
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 880px;
+}
+
+.image-container {
+    width: 200px;
+    margin: 20px auto 0 auto;
+}
+
 .container {
     width: 100%;
     max-width: 400px;
-    max-height: 251px;
-    height: 54vw;
     padding: 20px;
+}
+
+.container.payment-info {
+    align-items: flex-start;
+}
+
+.container.card-info {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+}
+
+.card-container { 
+    height: 258px;
+    float: left;
+    padding: 20px 0;
+}
+
+.card-info-container {
+    float: right;
+}
+
+.container.payer-address-info {
+    float: left;
 }
 
 #ccsingle {
@@ -126,7 +187,7 @@ input {
     border-radius: 22px;
 }
 
-#generatecard{
+#generatecard {
     cursor: pointer;
     float: right;
     font-size: 12px;
@@ -135,7 +196,7 @@ input {
     background-color: #909090;
     border-radius: 4px;
     cursor: pointer;
-    float:right;
+    float: right;
 }
 
 /* CHANGEABLE CARD ELEMENTS */
