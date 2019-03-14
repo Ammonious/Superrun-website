@@ -1,0 +1,43 @@
+.select-style {
+    width: 100%;
+    overflow: hidden;
+    background: url("../img/select-arrow.png") no-repeat 97% 50%;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    margin: 24px 0;
+}
+
+.select-style select {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background-color: white;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.select-style select:focus {
+    outline: none;
+    border: none;
+    box-shadow: none
+}
+
+.extra-big-input,
+.extra-big-textarea,
+.extra-big-select select {
+    padding: 18px 25px;
+    font-size: 14px;
+    line-height: 24px;
+    height: 54px;
+}
+
+.big-input,
+.big-textarea,
+.big-select select {
+    padding: 18px 25px;
+    font-size: 14px;
+    border-radius: 0;
+}

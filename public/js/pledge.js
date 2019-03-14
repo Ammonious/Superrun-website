@@ -2,7 +2,8 @@ window.onload = function () {
 
 
 const baseUrl = "https://us-central1-funrun-dd997.cloudfunctions.net/";
-
+const stripe = Stripe('pk_test_pbmtUYka0tFVN7nKAaVgvTxk');
+const elements = stripe.elements();
 firebase.initializeApp({
             apiKey: "AIzaSyAGIN8ephB61ongcfgq5Ph715zDRsJ3UEI",
             authDomain: "funrun-dd997.firebaseapp.com",
@@ -214,11 +215,18 @@ cardnumber_mask.on("accept", function () {
 });
 
 
+var style = {
+  base: {
+    // Add your base input styles here. For example:
+    fontSize: '16px',
+    color: "#32325d",
+  }
+};
 
 //Generate random card number from list of known test numbers
 const randomCard = function () {
     let testCards = [
-        '4124939999999990',
+        '4242424242424242',
         '5406004444444443',
         '5418790008991235',
         '6011013333333331',
@@ -320,22 +328,22 @@ document.getElementById("pledgeBtn").onclick = function () {
 	 
 	 var donor = {
 	 			name :  document.getElementById("name").value,
-	 		//	email : document.getElementById("email").value,
+	 			email : document.getElementById("email").value,
 	 			address : document.getElementById("address").value,
 	 		//	city : document.getElementById("city").value,
 	 			state : "UT", // document.getElementById("state").options[document.getElementById("state").selectedIndex].value,
 	 		//	schoolName : document.getElementById("schoolSelection").options[document.getElementById("schoolSelection").selectedIndex].value,
 	 			cardNumber : document.getElementById("cardnumber").value, // "4124939999999990"
 	 			cvc : document.getElementById("securitycode").value,
-	 			expirationMonth : month,
-	 			expirationYear : year,
+	 			expMonth : month,
+	 			expYear : year,
 	 			pledgePerLap : document.getElementById("pledgeAmount").value,
 	 			studentId : voucherCode,
 	 		//	school : school,
 	 		//	schoolId : school.schoolId
 		}
 		 
-	axios.post('https://us-central1-funrun-dd997.cloudfunctions.net/verifyCard', donor)
+	axios.post('https://us-central1-funrun-dd997.cloudfunctions.net/createCustomer', donor)
 	            .then(function (res) {
 	              console.log('log result - ' + res.data());
 				  //TODO - Change Donor to returned Donor

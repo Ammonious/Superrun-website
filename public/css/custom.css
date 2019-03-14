@@ -9,7 +9,7 @@ body {
 .select-style {
     width: 100%;
     overflow: hidden;
-    background: url("../images/select-arrow.png") no-repeat 97% 50%;
+    background: url("img/select-arrow.png") no-repeat 97% 50%;
     border: 1px solid #d1d1d1;
     border-radius: 3px;
     margin: 24px 0;
@@ -129,6 +129,7 @@ input {
 .flex-container {
     display: flex;
     flex-wrap: wrap;
+	margin-top: 200px;
     margin: 0 auto;
     width: 880px;
 }
@@ -423,4 +424,32 @@ input {
 .creditcard.flipped {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
+}
+
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
 }

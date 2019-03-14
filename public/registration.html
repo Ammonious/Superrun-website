@@ -16,8 +16,8 @@
         <link href="css/elegant-icons.min.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+        <link rel="stylesheet" href="css/reg.css">
         <link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
-        <link href="css/custom.css" rel="stylesheet" type="text/css" media="all"/>
         <!--[if gte IE 9]>
         	<link rel="stylesheet" type="text/css" href="css/ie9.css" />
 		<![endif]-->
@@ -39,7 +39,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<a href="index.html">
-								<img alt="logo" class="outer-logo" src="img/logo-light.png">
+								<img alt="logo" class="outer-logo" src="img/super_run.png">
 							</a>
 						</div>
 					</div>
@@ -55,15 +55,15 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<a href="index.html">
-									<img class="logo" alt="Logo" src="img/logo-light.png">
+									<img class="logo" alt="Logo" src="img/super_run.png">
 								</a>
 								<ul class="menu">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Make a Pledge</a></li>
-									<li><a href="#">Register a Student</a></li>
-									<li><a href="#">Get Started<br></a></li>
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact</a></li>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="pledge.html">Make a pledge</a></li>
+									<li><a href="registration.html">Register a student</a></li>
+									<li><a href="howitworks.html">How it works</a></li>
+									<li><a href="about.html">About us</a></li>
+									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</div>
 						</div>
@@ -84,7 +84,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<span class="text-white alt-font">super run</span>
-							<h1 class="text-white">Registration Form</h1>
+							<h1 class="text-white">Register Your Student</h1>
 							<p class="text-white lead"> </p>
 						</div>
 					</div>
@@ -95,9 +95,9 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
-							<h1>Get Started With Super Run</h1>
+							<h1>Get Your Student Registered For Their Super Run</h1>
 							<p class="lead">
-								Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+								Enter the information below. After you submit the form we'll email your student's voucher code and pledge link to the email you have listed.
 							</p>
 						</div>
 					</div>
@@ -107,11 +107,12 @@
 							<div class="form-wrapper clearfix">
 								<form class="form-contact email-form">
 									<div class="inputs-wrapper">
-										<input class="form-name validate-required" type="text" placeholder="Your Name" name="name">
+										<input class="form-name validate-required" type="text" placeholder="Student's Name" name="name">
 										<input class="form-email validate-required validate-email" type="text" name="email" placeholder="Your Email Address">
-										<textarea class="form-message validate-required" name="message" placeholder="Your Message"></textarea>
+										<input class="form-phone validate-required validate-phone" type="text" name="phone" placeholder="Your Phone">
+										<select name="schoolSelection" id="schoolSelection" class="bg-transparent no-margin-bottom"> <option selected>Select Your School</option></select>
 									</div>
-									<input type="submit" class="send-form" value="Send Form">
+									<input type="submit" class="send-form" value="Register">
 									<div class="form-success">
 										<span class="text-white">Message sent - Thanks for your enquiry</span>
 									</div>
@@ -210,6 +211,18 @@
         <script src="js/lightbox.min.js"></script>
         <script src="js/jquery.countdown.min.js"></script>
         <script src="js/scripts.js"></script>
+		
+		<!-- Firebase Init-->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js'></script>
+		<script src="https://demo.convergepay.com/hosted-payments/Checkout.js"></script>
+		<script src="https://js.stripe.com/v3/"></script>
+		<script src="js/registration.js"></script>
+		
+		
     </body>
 </html>
 				
