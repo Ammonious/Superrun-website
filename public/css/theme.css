@@ -4344,3 +4344,20 @@ footer.short-2 .contact-action:hover {
 .no-loader .loader {
   display: none !important;
 }
+
+div.inputs-wrapper {
+  overflow: hidden;
+}
+
+select#schoolSelection {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 100%;
+  height: 50px;
+  border: none;
+  background: none;
+  padding-left: 15px;
+  outline: none;
+  user-select: none;
+}
