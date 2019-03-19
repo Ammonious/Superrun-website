@@ -107,14 +107,15 @@
 							<div class="form-wrapper clearfix">
 								<form class="form-contact email-form">
 									<div class="inputs-wrapper">
-										<input class="form-name validate-required" type="text" placeholder="Student's Name" name="name">
-										<input class="form-email validate-required validate-email" type="text" name="email" placeholder="Your Email Address">
-										<input class="form-phone validate-required validate-phone" type="text" name="phone" placeholder="Your Phone">
+										<input class="form-name validate-required" id="name" type="text" placeholder="Student's Name" name="name">
+										<input class="form-email validate-required validate-email" id="email" type="text" name="email" placeholder="Your Email Address">
+										<input class="form-phone validate-required validate-phone" id="phone" type="text" name="phone" placeholder="Your Phone">
 										<select name="schoolSelection" id="schoolSelection" class="bg-transparent no-margin-bottom"> <option selected>Select Your School</option></select>
+										<select name="teacherSelection" id="teacherSelection" class="bg-transparent no-margin-bottom"> <option selected>Select Your Teacher</option></select>
 									</div>
-									<input type="submit" class="send-form" value="Register">
+									<input type="submit" id="submit" class="send-form" value="Register">
 									<div class="form-success">
-										<span class="text-white">Message sent - Thanks for your enquiry</span>
+										<span class="text-white">Registration Received! Please check your inbox.</span>
 									</div>
 									<div class="form-error">
 										<span class="text-white">Please complete all fields correctly</span>
@@ -169,7 +170,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-10">
-							<span class="sub">© Copright 2019 Hollyfundraisinh</span>
+							<span class="sub">© Copright 2019 Hollyfundraising</span>
 							<ul>
 								<li><br></li>
 								<li><br></li>

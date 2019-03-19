@@ -4361,3 +4361,15 @@ select#schoolSelection {
   outline: none;
   user-select: none;
 }
+select#teacherSelection {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 100%;
+  height: 50px;
+  border: none;
+  background: none;
+  padding-left: 15px;
+  outline: none;
+  user-select: none;
+}
