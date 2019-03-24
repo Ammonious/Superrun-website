@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #393939;
+    background-color: #303d4e;
     font-family: 'Raleway';
 }
 
@@ -452,4 +452,41 @@ input {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.open-modal {
+  background-color:#5cf9d2;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  outline: none;
+  padding: 20px 40px;
+  text-transform: uppercase
+}
+
+.open-modal:hover {background-color: #bff2e5}
+
+.modal {
+  background-color: #dbd9d9;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 200px;
+  margin-left: -200px;
+  margin-top: -150px;
+  padding: 50px;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.7);
+}
+
+.close-modal {
+  color:  #000;
+  text-decoration: none;
+  float: right;
+  position: absolute;
+  top: 10px;
+  right: 20px
 }

@@ -50,8 +50,7 @@ schoolOptions.onchange = function(){
 	var query = ref.where("schoolId", "==",schoolId).where("title","==","Teacher");
 	
 	query.get().then(function(querySnapshot) {
-		querySnapshot.forEach(function(doc) {
-			console.log("Document data:", doc.data());
+		querySnapshot.forEach(function(doc) { 
 			var data = doc.data();
 			var teacherName = data.name;
 			
@@ -67,22 +66,18 @@ schoolOptions.onchange = function(){
 var teacherJSON;
 teacherOptions.onchange = function() {
 	
-	var x = teacherOptions.selectedIndex;
-	var teacherjson = document.getElementsByTagName("option")[1].value;
-	var teacher = JSON.parse(teacherjson);
-	console.log(teacherjson);
+	teacherJSON = document.getElementById("teacherSelection").options[document.getElementById("teacherSelection").selectedIndex].value;
 	
 }
 	
 document.getElementById("submit").onclick = function () {
 	
-		 var name = document.getElementById('name');
-		 var email = document.getElementById('email');
-		 var phone = document.getElementById('phone'); 
+		 var name = document.getElementById('name').value;
+		 var email = document.getElementById('email').value;
+		 var phone = document.getElementById('phone').value; 
 		 var schoolName = document.getElementById("schoolSelection").options[document.getElementById("schoolSelection").selectedIndex].text;
-		 
-		 var x = document.getElementById("schoolSelection").selectedIndex;
-		 var json = document.getElementsByTagName("option")[x].value;
+		 var teacher = JSON.parse(teacherJSON);
+		 var json = document.getElementById("schoolSelection").options[document.getElementById("schoolSelection").selectedIndex].value;
 		 var school = JSON.parse(json);
 		 
 	var student = {
@@ -99,7 +94,8 @@ document.getElementById("submit").onclick = function () {
 		
 	axios.post('https://us-central1-funrun-dd997.cloudfunctions.net/registerStudent', student).then(function (res) { 
 		// Navigate to Registered Screen.
-					 
+		console.log('Registration Successful');
+		window.open("referral.html", "_self");
 				  
 	}).catch(function (err) {
 		console.log(err);

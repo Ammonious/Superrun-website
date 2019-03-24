@@ -19,7 +19,6 @@ db.settings({
   timestampsInSnapshots: true
 });
 
-
 const name = document.getElementById('name');
 const cardnumber = document.getElementById('cardnumber');
 const expirationdate = document.getElementById('expirationdate');
@@ -28,7 +27,7 @@ const output = document.getElementById('output');
 const ccicon = document.getElementById('ccicon');
 const ccsingle = document.getElementById('ccsingle');
 const generatecard = document.getElementById('generatecard');
-
+const idempotency_key = makeid(12);
 
 let cctype = null;
 
@@ -306,65 +305,133 @@ securitycode.addEventListener('focus', function () {
 });
 
 
-var voucherCode = "jhgkjhg87678";
+
+var studentName;
+var studentId;
+var teacherId;
+var schoolId;
+document.getElementById("studentVoucher").oninput = function() {
+	
+	var studentVoucher = document.getElementById("studentVoucher").value;
+	if(studentVoucher.length == 6){
+		
+		console.log(studentVoucher);
+		var ref = db.collection("Students");
+	
+		ref.get().then(function(querySnapshot) {
+			querySnapshot.forEach(function(doc) { 
+				var data = doc.data();
+				var json = data[studentVoucher];
+				studentId = json.studentId;
+				console.log(json);
+				if(studentVoucher.trim() === studentId.trim()){
+					
+					studentName = json.name;
+					studentId = json.studentId;
+					teacherId = json.teacherId;
+					schoolId = json.school.documentId;
+					console.log("Student's Name " + studentName);
+					console.log(data);
+					document.getElementById("studentLabel").innerHTML = "Student's Name - " + '<b>' + studentName + '</b>';
+				
+				}
+				
+			});
+		})
+	} else {
+		document.getElementById("studentLabel").innerHTML = "Student's Name - N/A";
+	}
+	
+	
+};
+
+document.getElementById("pledgeAmount").oninput = function(){
+	
+	var pledgeAmount = document.getElementById("pledgeAmount").value * 32;
+	document.getElementById("amountLabel").innerHTML = "Total Donation $" + '<b>' + pledgeAmount + '</b>' + " (32 Laps)";
+	console.log("Total Donation $" + pledgeAmount + " (32 Laps)");
+	
+};
 
 document.getElementById("pledgeBtn").onclick = function () {
 	 
-	 //TODO - Implement Loading Spinner
+	 // TODO - Implement Loading Spinner
 	 
-	 //TODO - Verify fields are completed
-	 
-	 //TODO - Verify voucherCode against voucherCodes Array;
+	 // TODO - Verify fields are completed
 	 
 	 // Submit Payment Info
-	 
-//	 var x = document.getElementById("schoolSelection").selectedIndex;
-//	 var school = document.getElementsByTagName("option")[x].value;
-	// var school = JSON.parse(json);
 	 var expirationDate = document.getElementById("expirationdate").value;
 	 var array = expirationDate.split("/");
 	 var month = array[0];
 	 var year = "20" + array[1];
-	 
+	 // getting entered amount and multiplying by the number of laps.
+	 var amount = document.getElementById('pledgeAmount').value * 32;
+	 // converting to cents for stripe
+	 var stripeAmount = amount * 100;
+	 // adding 1.00 fee
+	 stripeAmount = stripeAmount + 100;
 	 var donor = {
 	 			name :  document.getElementById("name").value,
 	 			email : document.getElementById("email").value,
 	 			address : document.getElementById("address").value,
-	 		//	city : document.getElementById("city").value,
-	 			state : "UT", // document.getElementById("state").options[document.getElementById("state").selectedIndex].value,
-	 		//	schoolName : document.getElementById("schoolSelection").options[document.getElementById("schoolSelection").selectedIndex].value,
-	 			cardNumber : document.getElementById("cardnumber").value, // "4124939999999990"
+	 			city : document.getElementById("city").value,
+	 			state : document.getElementById("state").options[document.getElementById("state").selectedIndex].value,
+	 			zip : document.getElementById("zip").value,
+	 			cardNumber : document.getElementById("cardnumber").value,
 	 			cvc : document.getElementById("securitycode").value,
 	 			expMonth : month,
 	 			expYear : year,
 	 			pledgePerLap : document.getElementById("pledgeAmount").value,
-	 			studentId : voucherCode,
-	 		//	school : school,
-	 		//	schoolId : school.schoolId
+	 			schoolId : schoolId,
+	 			teacherId : teacherId,
+	 			studentId : studentId,
+	 			studentName : studentName,
+	 			amount : stripeAmount,
+	 			idempotency_key : idempotency_key,
 		}
 		 
 	axios.post('https://us-central1-funrun-dd997.cloudfunctions.net/createCustomer', donor)
-	            .then(function (res) {
-	              console.log('log result - ' + res.data());
-				  //TODO - Change Donor to returned Donor
-				  db.collection('donors').add(donor).then(ref => {
-				  		
-				  		
-				  		
-				  	});
-	            })
-	            .catch(function (err) {
-	               console.log(err);
-	            });
+	.then(function (res) {
+	      console.log(res.data);
+		  var response = res.data;
+		  var error = response.error;
+		  if(error){
+		  	document.getElementById('modal_content').innerHTML = response.errorMessage;
+		  	var modal = $('.modal');
+		  	modal.fadeIn();
+		  } else {
+		  	window.open("confirmation.html", "_self");
+		  }
+				 
+	}).catch(function (err) {
+	    console.log(err);
+	});
 				
-	
-		
-			
-	 	 
-	 
-	 
+}
+var modal = $('.modal');
+$('.close-modal').click(function() {
+ modal.fadeOut();
+});
+
+
+// END ON WINDOW_LOAD
+};
+
+function makeid(length) {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < length; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
 }
 
-
-
-};
+function toggleDialog() {
+  var x = document.getElementById("dialog");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
