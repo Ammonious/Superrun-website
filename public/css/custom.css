@@ -1,10 +1,5 @@
 /*! Payment Page */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #303d4e;
-    font-family: 'Raleway';
-}
+ 
 
 .select-style {
     width: 100%;
@@ -49,75 +44,9 @@ body {
     font-size: 14px;
     border-radius: 0;
 }
-
-.payment-title {
-    width: 100%;
-    text-align: center;
-}
-
-.payment-title h1 {
-    color: #fff
-}
-
-.form-container .field-container:first-of-type {
-    grid-area: name;
-}
-
-.form-container .field-container:nth-of-type(2) {
-    grid-area: number;
-}
-
-.form-container .field-container:nth-of-type(3) {
-    grid-area: expiration;
-}
-
-.form-container .field-container:nth-of-type(4) {
-    grid-area: security;
-}
-
-.field-container input {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.field-container {
-    position: relative;
-}
-
-.form-container {
-    display: grid;
-    grid-column-gap: 10px;
-    grid-template-columns: auto auto;
-    grid-template-rows: 90px 90px 90px;
-    grid-template-areas: "name name""number number""expiration security";
-    max-width: 400px;
-    padding: 20px;
-    color: #707070;
-}
-
-label {
-    padding-bottom: 5px;
-    font-size: 11pt;
-    color: #fff;
-}
-
-input {
-    margin-top: 3px;
-    padding: 15px;
-    font-size: 16px;
-    width: 100%;
-    border-radius: 3px;
-    border: 1px solid #dcdcdc;
-}
-
-.ccicon {
-    height: 38px;
-    position: absolute;
-    right: 6px;
-    top: calc(50% - 9px);
-    width: 60px;
-}
-
+ 
+ 
+ 
 /* CREDIT CARD IMAGE STYLING */
 .preload * {
     -webkit-transition: none !important;
@@ -141,7 +70,6 @@ input {
 
 .container {
     width: 100%;
-    max-width: 400px;
     padding: 20px;
 }
 
@@ -157,7 +85,6 @@ input {
 
 .card-container { 
     height: 258px;
-    float: left;
     padding: 20px 0;
 }
 
@@ -489,4 +416,14 @@ input {
   position: absolute;
   top: 10px;
   right: 20px
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+
+    .card-container { 
+        height: 188px;
+        padding: 20px 0;
+    }
+
 }

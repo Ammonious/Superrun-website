@@ -24,6 +24,19 @@
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
+		
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId            : '2315593558712036',
+		      autoLogAppEvents : true,
+		      xfbml            : true,
+		      version          : 'v3.2'
+		    });
+		  };
+		</script>
+		<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+		
     	<div class="loader">
     		<div class="spinner">
 			  <div class="double-bounce1"></div>
@@ -77,18 +90,24 @@
 		<section class="contact-photo">
 				
 				<div class="background-image-holder">
-					<img class="background-image" alt="Background Image" src="img/hero4.jpg">
+					<img class="background-image" alt="Background Image" src="img/header_bg.png">
 				</div>
 				
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
-							<h1 class="text-white"><b>Registration Complete</b><br>
-							Give your student a head start by sending 10 invitations to pledge to friends and family!
-							</h1>
+							
+							
+							<h2 class="text-white"><b>Registration Complete</b><br>
+							Give your student a head start by sending 5 invitations to pledge to friends and family!
+							</h2>
+							<br>
+							<h3 id="studentVoucher" class="text-white"></h3>
+							<br>
+							
+							
 						</div>
 					</div>
-					
 					<div class="photo-form-wrapper clearfix">
 						<form class="email-form">
 							<div id="input-one" class="row">
@@ -106,90 +125,46 @@
 								</div>
 							
 								<div class="col-md-3 col-sm-4">
-									<input id="email-two" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
+									<input id="email-two" class="form-email" type="text" placeholder="Email" name="email">
 								</div>
 							</div>
 							<div id="input-three" class="row ">
 								<div class="col-md-3 col-sm-4 col-sm-offset-2 col-md-offset-3">
-									<input id="name-three" class="form-name validate-required" type="text" placeholder="Name" name="name">
+									<input id="name-three" class="form-name" type="text" placeholder="Name" name="name">
 								</div>
 							
 								<div class="col-md-3 col-sm-4">
-									<input id="email-three" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
+									<input id="email-three" class="form-email" type="text" placeholder="Email" name="email">
 								</div>
 							</div>
-							<div id="input-four" class="row"  style="display: none;">
+							<div id="input-four" class="row">
 								<div class="col-md-3 col-sm-4 col-sm-offset-2 col-md-offset-3">
-									<input id="name-four" class="form-name validate-required" type="text" placeholder="Name" name="name">
+									<input id="name-four" class="form-name" type="text" placeholder="Name" name="name">
 								</div>
 							
 								<div class="col-md-3 col-sm-4">
-									<input id="email-four" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
+									<input id="email-four" class="form-email" type="text" placeholder="Email" name="email">
 								</div>
 							</div>
-							<div id="input-five" class="row"  style="display: none;">
+							<div id="input-five" class="row">
 								<div class="col-md-3 col-sm-4 col-sm-offset-2 col-md-offset-3">
-									<input id="name-five" class="form-name validate-required" type="text" placeholder="Name" name="name">
+									<input id="name-five" class="form-name" type="text" placeholder="Name" name="name">
 								</div>
 							
 								<div class="col-md-3 col-sm-4">
-									<input id="email-five" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
+									<input id="email-five" class="form-email" type="text" placeholder="Email" name="email">
 								</div>
 							</div>
-							<div id="input-six" class="row"  style="display: none;">
-								<div class="col-md-3 col-sm-4 col-sm-offset-2 col-md-offset-3">
-									<input id="name-six" class="form-name validate-required" type="text" placeholder="Name" name="name">
-								</div>
-							
-								<div class="col-md-3 col-sm-4">
-									<input id="email-six" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
-								</div>
-							</div>
-							<div id="input-seven" class="row"  style="display: none;">
-								<div class="col-md-3 col-sm-4 col-sm-offset-2 col-md-offset-3">
-									<input id="name-seven" class="form-name validate-required" type="text" placeholder="Name" name="name">
-								</div>
-							
-								<div class="col-md-3 col-sm-4">
-									<input id="email-seven" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
-								</div>
-							</div>
-							<div id="input-eight" class="row"  style="display: none;">
-								<div class="col-md-3 col-sm-4 col-sm-offset-2 col-md-offset-3">
-									<input id="name-eight" class="form-name validate-required" type="text" placeholder="Name" name="name">
-								</div>
-							
-								<div class="col-md-3 col-sm-4">
-									<input id="email-eight" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
-								</div>
-							</div>
-							<div id="input-nine" class="row"  style="display: none;">
-								<div class="col-md-3 col-sm-4 col-sm-offset-2 col-md-offset-3">
-									<input id="name-nine" class="form-name validate-required" type="text" placeholder="Name" name="name">
-								</div>
-							
-								<div class="col-md-3 col-sm-4">
-									<input id="email-nine" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
-								</div>
-							</div>
-							<div id="input-ten" class="row"  style="display: none;">
-								<div class="col-md-3 col-sm-4 col-sm-offset-2 col-md-offset-3">
-									<input id="name-ten" class="form-name validate-required" type="text" placeholder="Name" name="name">
-								</div>
-							
-								<div class="col-md-3 col-sm-4">
-									<input id="email-ten" class="form-email validate-required validate-email" type="text" placeholder="Email" name="email">
-								</div>
-							</div>
+							 
 						
 							<div class="row" >
 								<div class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 text-center">
-									<input type="submit" class="send-form btn-filled" value="Send">
-									<div class="form-success">
-										<span class="text-white">Message sent - Thanks for your enquiry</span>
+									<input id="send" type="submit" class="send-form btn-filled" value="Send">
+									<div class="form-success-">
+										
 									</div>
-									<div class="form-error">
-										<span class="text-white">Please complete all fields correctly</span>
+									<div class="form-error-">
+										
 									</div>
 								</div>	
 							</div>
@@ -209,14 +184,8 @@
 								<ul class="social-icons">
 									
 									<li>
-										<a href="#">
+										<a id="facebook" href="#">
 											<i class="icon social_facebook"></i>
-										</a>
-									</li>
-								
-									<li>
-										<a href="#">
-											<i class="icon social_instagram"></i>
 										</a>
 									</li>
 								</ul><br>
@@ -227,6 +196,15 @@
 				</div>
 			
 			</section>
+		</div>
+		
+		<div id="modal" class="modal">
+		    <a id="close-modal" class="close-modal" href="#">X</a>
+			<h1>Invitations Sent!</h1>
+			<div></div>
+		    <div id="modal_content"></div>
+			<div></div>
+			<br></br>
 		</div>
 		
 		<div class="footer-container">
@@ -245,6 +223,14 @@
         <script src="js/twitterFetcher_v10_min.js"></script>
         <script src="js/lightbox.min.js"></script>
         <script src="js/jquery.countdown.min.js"></script>
+		<!-- Firebase Init-->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js'></script>
+		<script src="https://unpkg.com/currency.js@~1.2.0/dist/currency.min.js"></script>
+		<script src="https://js.stripe.com/v3/"></script>
         <script src="js/scripts.js"></script>
         <script src="js/referral.js"></script>
     </body>

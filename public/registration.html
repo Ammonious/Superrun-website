@@ -107,18 +107,19 @@
 							<div class="form-wrapper clearfix">
 								<form class="form-contact email-form">
 									<div class="inputs-wrapper">
-										<input class="form-name validate-required" id="name" type="text" placeholder="Student's Name" name="name">
+										<input class="form-name validate-required" id="first-name" type="text" placeholder="Student's First Name" name="first-name">
+										<input class="form-name validate-required" id="last-name" type="text" placeholder="Student's Last Name" name="last-name">
 										<input class="form-email validate-required validate-email" id="email" type="text" name="email" placeholder="Parent's Email Address">
 										<input class="form-phone validate-required validate-phone" id="phone" type="text" name="phone" placeholder="Parent's Phone">
 										<select name="schoolSelection" id="schoolSelection" class="bg-transparent no-margin-bottom"> <option selected>Select Your School</option></select>
 										<select name="teacherSelection" id="teacherSelection" class="bg-transparent no-margin-bottom"> <option selected>Select Your Student's Teacher</option></select>
 									</div>
 									<input type="submit" id="submit" class="send-form" value="Register">
-									<div class="form-success">
-										<span class="text-white">Registration Received! Please check your inbox.</span>
+									<div class="form-success-one">
+										 
 									</div>
-									<div class="form-error">
-										<span class="text-white">Please complete all fields correctly</span>
+									<div class="form-error-one">
+										 
 									</div>
 								</form>
 							</div>
@@ -128,6 +129,13 @@
 			</section>
 			
 			
+		</div>
+		
+		<div id="modal" class="modal">
+		    <a id="close-modal" class="close-modal" href="#">X</a>
+			<h1>Oops!</h1>
+			<div></div>
+		    <div id="modal_content"></div>
 		</div>
 		
 		<div class="footer-container">

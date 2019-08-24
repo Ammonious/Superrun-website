@@ -347,7 +347,7 @@ $(document).ready(function(){
             
             jQuery.ajax({
                 type: "POST",
-                url: "mail/mail.php",
+                url: "",
                 data: thisForm.serialize(),
                 success: function (response) {
                 	// Swiftmailer always sends back a number representing numner of emails sent.

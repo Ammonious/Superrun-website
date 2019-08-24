@@ -22,12 +22,9 @@ window.onload = function () {
 	var schoolRef = db.collection("Schools");
 	schoolRef.get().then(function(querySnapshot) {
 		querySnapshot.forEach(function(doc) {
-			console.log("Document data:", doc.data());
 			var data = doc.data();
 			var schoolName = data.School;
 			var myJSON = JSON.stringify(data);
-			console.log("School Name: ", schoolName);
-			console.log(myJSON);
 			var option = document.createElement("option");
 			option.text = schoolName;
 			option.value = myJSON;
@@ -39,14 +36,12 @@ window.onload = function () {
 	
 var teacherOptions = document.getElementById('teacherSelection');
 schoolOptions.onchange = function(){
-	console.log("On Select school called");
 	var x = document.getElementById("schoolSelection").selectedIndex;
 	var school = document.getElementsByTagName("option")[x].value;
 	var obj = JSON.parse(school); 
 	
 	var schoolId = obj.documentId;
 	var ref = db.collection("Users");
-	console.log('school id ' + schoolId);
 	var query = ref.where("schoolId", "==",schoolId).where("title","==","Teacher");
 	
 	query.get().then(function(querySnapshot) {
@@ -54,7 +49,6 @@ schoolOptions.onchange = function(){
 			var data = doc.data();
 			var teacherName = data.name;
 			
-			console.log("Teacher Name: ", teacherName);
 			var option = document.createElement("option");
 			option.text = teacherName;
 			option.value = JSON.stringify(data);
@@ -72,7 +66,26 @@ teacherOptions.onchange = function() {
 	
 document.getElementById("submit").onclick = function () {
 	
-		 var name = document.getElementById('name').value;
+	if(document.getElementById('first-name').value.length < 1){
+		 showModal('Looks like you are missing the first name. Please enter the required information and try again.');	
+	} else if(document.getElementById('last-name').value.length < 1){
+		 showModal('Looks like you are missing the last name. Please enter the required information and try again.');	
+	} else if(document.getElementById('email').value.length < 1) {
+		 showModal('Looks like you are missing the email address. Please enter the required information and try again.');	
+	} else if(document.getElementById("schoolSelection").options[document.getElementById("schoolSelection").selectedIndex].value == null){
+		 showModal('Looks like you are missing the school. Please enter the required information and try again.');	
+	} else if(teacherJSON == null){
+		 showModal('Looks like you are missing the teacher. Please enter the required information and try again.');
+	} else {
+		 
+		 var today = new Date();
+		 	var dd = String(today.getDate()).padStart(2, '0');
+		 	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+		 	var yyyy = today.getFullYear();
+		 	var date = yyyy + '-' + mm + '-' + dd;
+		 	
+		 showLoader();
+		 var name = document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value;
 		 var email = document.getElementById('email').value;
 		 var phone = document.getElementById('phone').value; 
 		 var schoolName = document.getElementById("schoolSelection").options[document.getElementById("schoolSelection").selectedIndex].text;
@@ -80,30 +93,58 @@ document.getElementById("submit").onclick = function () {
 		 var json = document.getElementById("schoolSelection").options[document.getElementById("schoolSelection").selectedIndex].value;
 		 var school = JSON.parse(json);
 		 
-	var student = {
+		 var student = {
 				'name' :  name,
 				'email' : email,
 				'phone' : phone,
 				'schoolName' : schoolName,
 				'schoolId' : school.documentId,
-				'school' : school,
-				'teacher' : teacher,
 				'teacherId' : teacher.uid,
-		}
+		 		'teacherName' : teacher.name,
+		 		'grade' : teacher.grade,
+				'date' : date,
+			}
+			
 		
+		axios.post('https://us-central1-funrun-dd997.cloudfunctions.net/registerStudent', student).then(function (res) { 
+			// Navigate to Registered Screen. 
+			var response = res.data;
+			var studentId = response.studentId;
+			window.open("referral.html?" + studentId, "_self");
+		}).catch(function (err) {
+			console.log(err);
+			hideLoader();
 		
-	axios.post('https://us-central1-funrun-dd997.cloudfunctions.net/registerStudent', student).then(function (res) { 
-		// Navigate to Registered Screen.
-		console.log('Registration Successful');
-		window.open("referral.html", "_self");
-				  
-	}).catch(function (err) {
-		console.log(err);
-				   
-	});
-
+		});
+	}
 
 }
-			
+		
+	
+var modal = $('.modal');
+$('.close-modal').click(function() {
+	modal.fadeOut();
+});	
 
 };
+
+
+function showLoader() {
+	$('.loader').css('opacity', 1);
+	setTimeout(function(){$('.loader').show();},0);
+}
+
+function hideLoader() {
+	
+	$('.loader').css('opacity', 0);
+	setTimeout(function(){$('.loader').hide();},0);
+}
+
+
+function showModal(message) {
+	document.getElementById('modal_content').innerHTML = message;
+	var modal = $('.modal');
+	modal.fadeIn();
+
+}
+
